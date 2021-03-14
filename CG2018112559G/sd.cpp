@@ -17,3 +17,12 @@
     NewBrush.DeleteObject();
     
 }
+
+ const pii& avrPos(const vector<pii>& PS)
+ {
+     const size_t vsz = PS.size();
+     ll f, s = f = 0;
+     for (auto& pii : PS)
+         f += pii.first, s += pii.second;
+     return { f / vsz,s / vsz };
+ }

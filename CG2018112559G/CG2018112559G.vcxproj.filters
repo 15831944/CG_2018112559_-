@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="作业">
+      <UniqueIdentifier>{6ffe1108-0218-4d83-81fa-150378444fad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="作业\头文件">
+      <UniqueIdentifier>{430d4274-62ba-486a-a314-22d1d2b9c32b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="作业\源文件">
+      <UniqueIdentifier>{cbefdf89-2e43-41c3-b984-1ef96a5ccfb2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CG2018112559G.h">
@@ -42,6 +51,15 @@
     <ClInclude Include="sd.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="j1.2.h">
+      <Filter>作业\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Jhead.h">
+      <Filter>作业\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jBase.h">
+      <Filter>作业\头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CG2018112559G.cpp">
@@ -61,6 +79,15 @@
     </ClCompile>
     <ClCompile Include="sd.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="J1.1.cpp">
+      <Filter>作业\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="j1.2.cpp">
+      <Filter>作业\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="jBase.cpp">
+      <Filter>作业\源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

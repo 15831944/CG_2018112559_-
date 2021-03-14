@@ -43,6 +43,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnJob11();
+	afx_msg void OnJob12();
 };
 
 #ifndef _DEBUG  // CG2018112559GView.cpp 中的调试版本

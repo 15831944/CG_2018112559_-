@@ -12,13 +12,10 @@
 
 #include "CG2018112559GDoc.h"
 #include "CG2018112559GView.h"
-
+//添加的头文件
 #pragma warning(disable:26451)
 #include"sd.h"
-#include<vector>
-#include<queue>
-#include<memory>
-
+#include"Jhead.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -34,6 +31,7 @@ BEGIN_MESSAGE_MAP(CCG2018112559GView, CScrollView)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CScrollView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CScrollView::OnFilePrintPreview)
 	ON_COMMAND(ID_JOB_1_1, &CCG2018112559GView::OnJob11)
+	ON_COMMAND(ID_JOB_1_2, &CCG2018112559GView::OnJob12)
 END_MESSAGE_MAP()
 
 // CCG2018112559GView 构造/析构
@@ -221,4 +219,35 @@ void CCG2018112559GView::OnJob11()
 		CString(CString("这一段文字需在一个矩形框内显示，**此为换行**\nthere is more")
 		//+([]()->CString {CString ret; for (int i = 0; i < 100; ++i)ret += L'a'; })()
 		), NULL);
+}
+
+
+void CCG2018112559GView::OnJob12()
+{
+	CDC* const pDC = AfxGetMainWnd()->GetDC();
+	CRect curArea;
+	GetClientRect(&curArea);
+	// 五角星
+	J::DrawFivePointStar(CRect(curArea.left, curArea.top, (2*curArea.left+ curArea.right) / 3, 
+		(curArea.top+3* curArea.bottom)/4),pDC,5,115);
+	//太极图
+
+	J::DrawTaiChiCircle(CRect((2 * curArea.left + curArea.right) / 3, curArea.top, 
+		(curArea.left + 2*curArea.right) / 3, (curArea.top + 3 * curArea.bottom) / 4), pDC,90);
+	J::DrawRandomLineAndPrintOverhead(
+		CRect(( curArea.left +2 * curArea.right) / 3, curArea.top,
+			curArea.right, (curArea.top + 3 * curArea.bottom) / 4),
+		pDC, { 100u,1000u,10000u,100000u}
+	);
+
+	//pDC->BeginPath();
+	//pDC->MoveTo(800, 300);
+	//pDC->AngleArc(300, 300, 500, 30, 270);
+	//pDC->LineTo(800, 300);
+	//pDC->EndPath();
+	//CBrush cb; cb.CreateSolidBrush(RGB(0, 255, 0));
+	//CRgn crgn;
+	//crgn.CreateFromPath(pDC);
+	//pDC->InvertRgn(&crgn);
+	//pDC->FillRgn(&crgn, &cb);
 }
