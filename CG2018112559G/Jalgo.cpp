@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "sd.h"
+#include "Jalgo.h"
 
  void DrawLine(CDC* pDC, const COLORREF& penColor, const COLORREF& backColor,
     const pii& startPoint, const pii& endPoint){
@@ -18,11 +18,11 @@
     
 }
 
- const pii& avrPos(const vector<pii>& PS)
+ const CPoint& avrPos(const vector<CPoint>& PS)
  {
      const size_t vsz = PS.size();
      ll f, s = f = 0;
      for (auto& pii : PS)
-         f += pii.first, s += pii.second;
-     return { f / vsz,s / vsz };
+         f += pii.x, s += pii.y;
+     return { int(f / vsz),int(s / vsz )};
  }

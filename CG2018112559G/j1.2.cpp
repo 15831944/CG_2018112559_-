@@ -93,13 +93,22 @@ void J::DrawTaiChiCircle(const CRect& area, CDC* pDC, size_t saa)
 		int(center.y - outlineCircleRadius * sin((saa - 90) * PAI / 180))},
 	};
 	//左弧
-	pDC->Arc(int(area.left), int(area.top * 3 + area.bottom) / 4,
-		(area.left + area.right) / 2, (area.top + 3 * area.bottom) / 4,
-		(arcs[1].x), arcs[1].y, arcs[0].x, arcs[0].y);
-	//右弧
-	pDC->Arc(int(area.left + area.right) / 2, int(area.top * 3 + area.bottom) / 4,
-		int(area.right), (area.top + 3 * area.bottom) / 4,
-		(arcs[1].x), arcs[1].y, arcs[2].x, arcs[2].y);
+	//pDC->Arc(int(area.left), int(area.top * 3 + area.bottom) / 4,
+	//	(area.left + area.right) / 2, (area.top + 3 * area.bottom) / 4,
+	//	(arcs[1].x), arcs[1].y, arcs[0].x, arcs[0].y);
+	 
+	//为制止angleArc的使用创建一条重多角星的中心到angleArc的起点的一条直线，需要moveTo这个点
+	pDC->MoveTo(center.x,center.y);
+	pDC->AngleArc(leftCircleCenter.x, leftCircleCenter.y, 
+		outlineCircleRadius / 2, saa + 90, -180);
+	////右弧
+	//pDC->Arc(int(area.left + area.right) / 2, int(area.top * 3 + area.bottom) / 4,
+	//	int(area.right), (area.top + 3 * area.bottom) / 4,
+	//	(arcs[1].x), arcs[1].y, arcs[2].x, arcs[2].y);
+	pDC->MoveTo(center.x + cos((saa - 90) * PAI / 180) * outlineCircleRadius,
+		center.y - sin((saa - 90) * PAI / 180) * outlineCircleRadius);
+	pDC->AngleArc(rightCircleCenter.x, rightCircleCenter.y, 
+		outlineCircleRadius / 2, saa - 90, -180);
 	//上色  --黑色的鱼
 	CPen nullPen(PS_NULL, 0, RGB(255, 255, 255));
 	pDC->MoveTo(center.x, center.y);
@@ -139,6 +148,9 @@ void J::DrawTaiChiCircle(const CRect& area, CDC* pDC, size_t saa)
 
 void J::DrawRandomLineAndPrintOverhead(const CRect& area, CDC* pDC, vector<size_t> testArgs)
 {
+	//初始化点
+	
+	pDC->MoveTo(avrPos({ area.TopLeft(),area.BottomRight() }));
 	vector<vector<pair<pair<size_t, size_t>, pair<size_t, size_t>> > >liness(testArgs.size());
 	//待输出的文本内容 
 	vector<CString> csv(testArgs.size());

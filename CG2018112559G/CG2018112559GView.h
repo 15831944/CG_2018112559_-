@@ -4,6 +4,8 @@
 
 #pragma once
 
+//添加的头
+#include"C2018112559_Lullaby.h"
 
 class CCG2018112559GView : public CScrollView
 {
@@ -44,6 +46,8 @@ protected:
 public:
 	afx_msg void OnJob11();
 	afx_msg void OnJob12();
+	afx_msg void On_Menu_Job_2_1();
+	afx_msg void OnMenuJob21();
 };
 
 #ifndef _DEBUG  // CG2018112559GView.cpp 中的调试版本

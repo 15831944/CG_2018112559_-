@@ -14,7 +14,7 @@ using std::vector;
 //块染色函数
 
 //中点函数 
-const pii& avrPos(const vector<pii>& PS);
+const CPoint& avrPos(const vector<CPoint>& PS);
 //
 
 #endif

@@ -14,7 +14,7 @@
 #include "CG2018112559GView.h"
 //添加的头文件
 #pragma warning(disable:26451)
-#include"sd.h"
+#include"Jalgo.h"
 #include"Jhead.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -32,6 +32,7 @@ BEGIN_MESSAGE_MAP(CCG2018112559GView, CScrollView)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CScrollView::OnFilePrintPreview)
 	ON_COMMAND(ID_JOB_1_1, &CCG2018112559GView::OnJob11)
 	ON_COMMAND(ID_JOB_1_2, &CCG2018112559GView::OnJob12)
+	ON_COMMAND(ID_Menu_Job_2_1, &CCG2018112559GView::OnMenuJob21)
 END_MESSAGE_MAP()
 
 // CCG2018112559GView 构造/析构
@@ -233,13 +234,13 @@ void CCG2018112559GView::OnJob12()
 	//太极图
 
 	J::DrawTaiChiCircle(CRect((2 * curArea.left + curArea.right) / 3, curArea.top, 
-		(curArea.left + 2*curArea.right) / 3, (curArea.top + 3 * curArea.bottom) / 4), pDC,90);
+		(curArea.left + 2*curArea.right) / 3, (curArea.top + 3 * curArea.bottom) / 4),
+		pDC,90);
 	J::DrawRandomLineAndPrintOverhead(
 		CRect(( curArea.left +2 * curArea.right) / 3, curArea.top,
 			curArea.right, (curArea.top + 3 * curArea.bottom) / 4),
 		pDC, { 100u,1000u,10000u,100000u}
 	);
-
 	//pDC->BeginPath();
 	//pDC->MoveTo(800, 300);
 	//pDC->AngleArc(300, 300, 500, 30, 270);
@@ -250,4 +251,15 @@ void CCG2018112559GView::OnJob12()
 	//crgn.CreateFromPath(pDC);
 	//pDC->InvertRgn(&crgn);
 	//pDC->FillRgn(&crgn, &cb);
+}
+
+
+
+void CCG2018112559GView::OnMenuJob21()
+{
+	/*C2018112559_Lullaby pCDC(this);
+	pCDC.DemoLine({ 100,100 }, { 200,400 });
+	pCDC.DDALine({ 400,300 }, { 900,900 });
+	pCDC.MIDLine({ 200,300 }, { 500,900 });*/
+	test2_1(AfxGetMainWnd());
 }

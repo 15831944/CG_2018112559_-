@@ -48,9 +48,6 @@
     <ClInclude Include="pch.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="sd.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="j1.2.h">
       <Filter>作业\头文件</Filter>
     </ClInclude>
@@ -58,6 +55,18 @@
       <Filter>作业\头文件</Filter>
     </ClInclude>
     <ClInclude Include="jBase.h">
+      <Filter>作业\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Jalgo.h">
+      <Filter>作业\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="C2018112559_Lullaby.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="check.h">
+      <Filter>作业\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="j2.1.h">
       <Filter>作业\头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -77,9 +86,6 @@
     <ClCompile Include="pch.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="sd.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="J1.1.cpp">
       <Filter>作业\源文件</Filter>
     </ClCompile>
@@ -87,6 +93,15 @@
       <Filter>作业\源文件</Filter>
     </ClCompile>
     <ClCompile Include="jBase.cpp">
+      <Filter>作业\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Jalgo.cpp">
+      <Filter>作业\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="C2018112559_Lullaby.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="check.cpp">
       <Filter>作业\源文件</Filter>
     </ClCompile>
   </ItemGroup>

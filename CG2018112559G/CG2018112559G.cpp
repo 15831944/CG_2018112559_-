@@ -11,7 +11,7 @@
 
 #include "CG2018112559GDoc.h"
 #include "CG2018112559GView.h"
-#include "sd.h"
+#include "Jalgo.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
