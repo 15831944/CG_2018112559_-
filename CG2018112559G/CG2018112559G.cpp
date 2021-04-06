@@ -12,6 +12,9 @@
 #include "CG2018112559GDoc.h"
 #include "CG2018112559GView.h"
 #include "Jalgo.h"
+#include"threadManage.h"
+
+#include<vector>
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -123,7 +126,6 @@ BOOL CCG2018112559GApp::InitInstance()
 	// 用 /RegServer、/Register、/Unregserver 或 /Unregister 启动应用程序，则返回 FALSE。
 	if (!ProcessShellCommand(cmdInfo))
 		return FALSE;
-
 	// 唯一的一个窗口已初始化，因此显示它并对其进行更新
 	m_pMainWnd->ShowWindow(SW_SHOWMAXIMIZED);
 	m_pMainWnd->UpdateWindow();
@@ -131,6 +133,7 @@ BOOL CCG2018112559GApp::InitInstance()
 	//  在 SDI 应用程序中，这应在 ProcessShellCommand 之后发生
 	// 启用拖/放
 	m_pMainWnd->DragAcceptFiles();
+
 	return TRUE;
 }
 

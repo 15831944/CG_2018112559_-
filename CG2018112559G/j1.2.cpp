@@ -1,6 +1,7 @@
 #pragma once
 #include"pch.h"
 #include"j1.2.h"
+#include"Jalgo.h"
 #include<vector>
 #include<utility>
 #include<memory>

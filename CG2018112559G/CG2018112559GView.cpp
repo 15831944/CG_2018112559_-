@@ -16,6 +16,8 @@
 #pragma warning(disable:26451)
 #include"Jalgo.h"
 #include"Jhead.h"
+#include"pack.h"
+#include"threadManage.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -33,9 +35,34 @@ BEGIN_MESSAGE_MAP(CCG2018112559GView, CScrollView)
 	ON_COMMAND(ID_JOB_1_1, &CCG2018112559GView::OnJob11)
 	ON_COMMAND(ID_JOB_1_2, &CCG2018112559GView::OnJob12)
 	ON_COMMAND(ID_Menu_Job_2_1, &CCG2018112559GView::OnMenuJob21)
+	//ON_COMMAND(ID_J_2_2, &CCG2018112559GView::OnJ22)
+	//ON_COMMAND(ID_J_2_3, &CCG2018112559GView::OnJ23)
+	//ON_COMMAND(ID_J_2_4, &CCG2018112559GView::OnJ24)
+	ON_COMMAND(ID_J_2_1_1, &CCG2018112559GView::OnJ211)
+	ON_COMMAND(ID_J_2_1_2, &CCG2018112559GView::OnJ212)
+	ON_COMMAND(ID_J_2_1_3, &CCG2018112559GView::OnJ213)
+	ON_COMMAND(ID_J_2_2_1, &CCG2018112559GView::OnJ221)
+	ON_COMMAND(ID_J221T, &CCG2018112559GView::OnJ221t)
+	ON_COMMAND(ID_J221A, &CCG2018112559GView::OnJ221a)
+	ON_COMMAND(ID_J221B, &CCG2018112559GView::OnJ221b)
+	ON_COMMAND(ID_J221C, &CCG2018112559GView::OnJ221c)
+	ON_COMMAND(ID_J221Z, &CCG2018112559GView::OnJ221z)
+	ON_COMMAND(ID_J221d, &CCG2018112559GView::OnJ221d)
+	ON_COMMAND(ID_J221E, &CCG2018112559GView::OnJ221e)
+	ON_COMMAND(ID_J23a, &CCG2018112559GView::OnJ23a)
+	ON_COMMAND(ID_J23b, &CCG2018112559GView::OnJ23b)
 END_MESSAGE_MAP()
 
 // CCG2018112559GView 构造/析构
+
+void CCG2018112559GView::MFCcls()
+{
+	CDC* pDC = GetDC();
+	CRect rc;
+	GetClientRect(&rc);
+	pDC->FillSolidRect(&rc, RGB(255, 255, 255));
+	ReleaseDC(pDC);
+}
 
 CCG2018112559GView::CCG2018112559GView() noexcept
 {
@@ -45,6 +72,8 @@ CCG2018112559GView::CCG2018112559GView() noexcept
 
 CCG2018112559GView::~CCG2018112559GView()
 {
+	for(auto &thr:tm.)
+
 }
 
 BOOL CCG2018112559GView::PreCreateWindow(CREATESTRUCT& cs)
@@ -172,7 +201,7 @@ void CCG2018112559GView::OnJob11()
 	const int plParam = 40;//可变参数
 	std::deque<CPoint> deq = { {width / 4,height / 3},{width / 2,height / 3},
 		{width / 2,height * 2 / 3 },{width / 4,height * 2 / 3} };//某时的四个点
-	std::vector<CPoint> polyDrawLP = {deq.back()};//初始化为deq的末尾元素
+	std::vector<CPoint> polyDrawLP = { deq.back() };//初始化为deq的末尾元素
 	CPoint plCurPos(width / 2, height / 2);
 	for (int i = 0; i < plParam; ++i)
 	{
@@ -183,8 +212,8 @@ void CCG2018112559GView::OnJob11()
 		deq.emplace_back(polyDrawLP.back());
 	}
 	//std::unique_ptr<DWORD *>lpPolyPoint(new DWORD[1])
-	DWORD lpPolyPoint = plParam+1;
-	pDC->PolyPolyline(&polyDrawLP[0],&lpPolyPoint,1 );
+	DWORD lpPolyPoint = plParam + 1;
+	pDC->PolyPolyline(&polyDrawLP[0], &lpPolyPoint, 1);
 	pDC->TextOutW(width / 2 + FontOffset, FontOffset + height / 3, CString("曲线"));
 	pDC->Arc(17 * width / 32, height * 11 / 24, 19 * width / 32, height * 13 / 24,
 		width / 2, height / 2, width * 3 / 4, height * 3 / 4);
@@ -194,19 +223,19 @@ void CCG2018112559GView::OnJob11()
 		width / 2, height / 2, width * 3 / 4, height * 3 / 4);
 
 	pDC->TextOutW(width * 3 / 4 + FontOffset, FontOffset + height / 3, CString("圆弧"));
-	pDC->Arc(24 * width / 32, height * 8 / 24, 24 * width / 32+200, height * 8 / 24+200,
+	pDC->Arc(24 * width / 32, height * 8 / 24, 24 * width / 32 + 200, height * 8 / 24 + 200,
 		width / 2, height / 2, width * 3 / 4, height * 3 / 4);
-	pDC->TextOutW(FontOffset, FontOffset + height *2/ 3, CString("椭圆弧"));
-	pDC->Arc(0, height*2/3, width/4, height,
+	pDC->TextOutW(FontOffset, FontOffset + height * 2 / 3, CString("椭圆弧"));
+	pDC->Arc(0, height * 2 / 3, width / 4, height,
 		width / 2, height / 2, width * 3 / 4, height * 3 / 4);
-	pDC->TextOutW(FontOffset+width/4, FontOffset + height * 2 / 3, CString("弦"));
+	pDC->TextOutW(FontOffset + width / 4, FontOffset + height * 2 / 3, CString("弦"));
 	pDC->Ellipse(width / 4, height * 2 / 3, width / 4 + 200, height * 2 / 3 + 200);
 	for (int cnt = 7, i = 0; i < cnt; ++i)
 		DrawLine(pDC, RGB(0, 0, 255), RGB(255, 0, 0),
 			pii(width / 4.0 + 100 + 100 * cos(i * 360.0 / cnt), height * 2 / 3 + 100 + (sin(i * 360.0 / cnt))),
 			pii(width / 4.0 + 100 + 100 * cos((i + 3) * 360.0 / cnt), height * 2 / 3 + 100 + (sin((3 + i) * 360.0 / cnt))));
 
-	pDC->TextOutW(FontOffset + width *2/ 4, FontOffset + height * 2 / 3, CString("填充"));
+	pDC->TextOutW(FontOffset + width * 2 / 4, FontOffset + height * 2 / 3, CString("填充"));
 	CBrush nBrush;
 	nBrush.CreateSolidBrush(RGB(0, 255, 0));
 	pDC->Ellipse(width / 2 + 50, height * 2 / 3 + 50, width / 2 + 250, height * 2 / 3 + 250);
@@ -215,10 +244,10 @@ void CCG2018112559GView::OnJob11()
 		width / 2 + 250, height * 2 / 3 + 250);
 	pDC->FillRgn(&zoneToFill, &nBrush);
 	pDC->TextOutW(FontOffset + width * 3 / 4, FontOffset + height * 2 / 3, CString("文字"));
-	pDC->ExtTextOutW(width * 3 / 4 + 50, height * 2 / 3+50, NULL,
-		&CRect(width * 3 / 4+50,height*2/3+50,width-50,height-50),
+	pDC->ExtTextOutW(width * 3 / 4 + 50, height * 2 / 3 + 50, NULL,
+		&CRect(width * 3 / 4 + 50, height * 2 / 3 + 50, width - 50, height - 50),
 		CString(CString("这一段文字需在一个矩形框内显示，**此为换行**\nthere is more")
-		//+([]()->CString {CString ret; for (int i = 0; i < 100; ++i)ret += L'a'; })()
+			//+([]()->CString {CString ret; for (int i = 0; i < 100; ++i)ret += L'a'; })()
 		), NULL);
 }
 
@@ -229,17 +258,17 @@ void CCG2018112559GView::OnJob12()
 	CRect curArea;
 	GetClientRect(&curArea);
 	// 五角星
-	J::DrawFivePointStar(CRect(curArea.left, curArea.top, (2*curArea.left+ curArea.right) / 3, 
-		(curArea.top+3* curArea.bottom)/4),pDC,5,115);
+	J::DrawFivePointStar(CRect(curArea.left, curArea.top, (2 * curArea.left + curArea.right) / 3,
+		(curArea.top + 3 * curArea.bottom) / 4), pDC, 5, 115);
 	//太极图
 
-	J::DrawTaiChiCircle(CRect((2 * curArea.left + curArea.right) / 3, curArea.top, 
-		(curArea.left + 2*curArea.right) / 3, (curArea.top + 3 * curArea.bottom) / 4),
-		pDC,90);
+	J::DrawTaiChiCircle(CRect((2 * curArea.left + curArea.right) / 3, curArea.top,
+		(curArea.left + 2 * curArea.right) / 3, (curArea.top + 3 * curArea.bottom) / 4),
+		pDC, 90);
 	J::DrawRandomLineAndPrintOverhead(
-		CRect(( curArea.left +2 * curArea.right) / 3, curArea.top,
+		CRect((curArea.left + 2 * curArea.right) / 3, curArea.top,
 			curArea.right, (curArea.top + 3 * curArea.bottom) / 4),
-		pDC, { 100u,1000u,10000u,100000u}
+		pDC, { 100u,1000u,10000u,100000u }
 	);
 	//pDC->BeginPath();
 	//pDC->MoveTo(800, 300);
@@ -255,11 +284,252 @@ void CCG2018112559GView::OnJob12()
 
 
 
+//#include<utility>
+//void targetF(int i, char c, char co, float f) {};
+//template<decltype(&targetF), class ...Paras>
+//struct tF {
+//	void operator()(Paras ...para) {
+//		(*targetF)(para...);
+//	}
+//};
+//void test_test() {
+//	using tPara = tuple<CPoint, CPoint, COLORREF>;
+//	tPara testExample({ 1,1 }, { 300,500 }, RGB(0, 0, 0));
+//	C2018112559_Lullaby lull_ins(AfxGetMainWnd());
+//	auto fp = &C2018112559_Lullaby::MIDLine;
+//	///test<C2018112559_Lullaby, decltype(fp), decltype(testExample)> test_ins;
+//	//基类型
+//	tF<(&targetF), int, char, char, float> tfins;
+//	tfins(1, 1, 1, 1.0f);
+//	//基模板
+//	test< C2018112559_Lullaby, decltype(&C2018112559_Lullaby::MIDLine),
+//		const  CPoint&,const  CPoint&, COLORREF> test0;
+//    test0(lull_ins, &C2018112559_Lullaby::MIDLine,
+//		CPoint(1, 1), CPoint(200, 200), COLORREF(RGB(0, 0, 0)));
+//	//单参tuple模板
+//	test<Tuple_exist, C2018112559_Lullaby, decltype(&C2018112559_Lullaby::MIDLine),
+//		tuple<const CPoint&>, const CPoint&, COLORREF> test1;
+//	test1(lull_ins, &C2018112559_Lullaby::MIDLine,
+//		/*tuple<const CPoint&>*/(CPoint(200, 200)), CPoint(400, 200), COLORREF(RGB(0, 0, 0)));
+//	tuple<int, int>;
+//	//paraPack<int, int, char>::Paras;
+//	auto p=[]() {};
+//}
+//template<class ToType,class FromType>
+//void GetMemberFuncAddr_VC6(ToType& addr, FromType f)
+//{
+//	union
+//	{
+//		FromType _f;
+//		ToType   _t;
+//	}ut;
+//	ut._f = f;
+//	addr = ut._t;
+//}
+//using fpt = decltype(&C2018112559_Lullaby::MIDLine);
+//using noThisFPT = void  (Class_func_Call *)(void*, const CPoint& start, const CPoint& end,
+//	COLORREF pen);
+
 void CCG2018112559GView::OnMenuJob21()
 {
-	/*C2018112559_Lullaby pCDC(this);
-	pCDC.DemoLine({ 100,100 }, { 200,400 });
-	pCDC.DDALine({ 400,300 }, { 900,900 });
-	pCDC.MIDLine({ 200,300 }, { 500,900 });*/
-	test2_1(AfxGetMainWnd());
+	MFCcls();
+	test2_1(this);
+
+	//C2018112559_Lullaby lull(this);
+	//lull.MIDLineInBaseY({ 200,200 }, {300,500 },RGB(0,0,0));
+	//auto pDC = AfxGetMainWnd()->GetDC();
+	//auto oldPen = pDC->SelectObject(noDelete(CPen, (1, 1, RGB(255, 0, 0))));
+	//pDC->MoveTo(200, 200);
+	//pDC->LineTo(300, 300);
+	//auto newPen = pDC->SelectObject(oldPen);
+	////test2_1(AfxGetMainWnd());
+	//void* p;
+	//fpt fp = &C2018112559_Lullaby::MIDLine;
+	//GetMemberFuncAddr_VC6<void*, fpt>(p, fp);
+	//noThisFPT nfp;
+	//GetMemberFuncAddr_VC6<noThisFPT, void*>(nfp, p);
+	//C2018112559_Lullaby lull(AfxGetMainWnd());
+	//const CPoint l(1, 1), r(800, 400);
+	//COLORREF col = RGB(0, 0, 0);
+	//lull.MIDLine(l,r,col);
+	//(*nfp)(dynamic_cast<void*>( &lull),l,r,col);
+	////using derPack = derTuple<int, char, float>;
+	////using pack = tuple<int, char, float>;
+	////derPack x(1, char(57), 1.0);
+	////pack px = x;
+	////DTRACE(d,px._Myfirst._Val);
+	////DTRACE(c, px._Get_rest()._Myfirst._Val);
+	////DTRACE(f, px._Get_rest()._Get_rest()._Myfirst._Val);
+	////tuple_element<0, pack>::type;
+	////tuple_element<0, derPack::base>::type;
+	////tuple_element_t<0, pack>;
+	//noThisFPT CFmidLine=nullptr;
+	//CMF2CF<C2018112559_Lullaby, void, const CPoint&, const CPoint&,
+	//	COLORREF>(&C2018112559_Lullaby::MIDLine, CFmidLine);
+	//(*CFmidLine)(dynamic_cast<void*>(&lull), { 200,200 }, { 600,200 }, RGB(0, 0, 0));
+	//test_test();
+}
+
+
+void CCG2018112559GView::OnJ211()
+{
+	MFCcls();
+	test2_1(this);
+	// TODO: 在此添加命令处理程序代码
+}
+
+
+void CCG2018112559GView::OnJ212()
+{
+	MFCcls();
+	test_2_1_efficiency(this);
+	// TODO: 在此添加命令处理程序代码
+}
+
+
+void CCG2018112559GView::OnJ213()
+{
+	MFCcls();
+	test_2_1_efficiency_directive_msvcCall(this);
+}
+
+
+void CCG2018112559GView::OnJ221()
+{
+	MFCcls();
+
+	// TODO: 在此添加命令处理程序代码
+}
+
+
+void CCG2018112559GView::OnJ221t()
+{
+	//2.2.1 圆算法 对比测试
+	MFCcls();
+	C2018112559_Lullaby lull(this);
+	lull.MidCircle({ 500,500 }, 100);
+	lull.MidCircleArc({ 500,500 }, 200, 1, 2);
+	lull.MidCircleArc({ 500,500 }, 200, 3, 4);
+	lull.MidCircleArc({ 500,500 }, 200, 5, 6);
+	lull.BreshenhamCircle({ 500,500 }, 300);
+	lull.MidEllipsolid({ 100,100,500,300 });
+	lull.MidEllipsolidArc({ 0,0,500,300 }, 1, 2);
+	lull.MidEllipsolidArc({ 0,0,500,300 }, 3, 4);
+	lull.MidEllipsolidArc({ 0,0,500,300 }, 5, 6);
+}
+
+
+
+void CCG2018112559GView::OnJ221a()
+{
+	//2.2.1 圆算法 中点画圆
+	MFCcls();
+	C2018112559_Lullaby lull(this);
+	lull.MidCircle({ 300,300 }, 200);
+}
+
+
+void CCG2018112559GView::OnJ221b()
+{
+	//2.2.1 圆算法 breshenham画圆
+	MFCcls();
+	C2018112559_Lullaby lull(this);
+	lull.BreshenhamCircle({ 300,300 }, 200);
+
+}
+
+
+void CCG2018112559GView::OnJ221c()
+{
+	//2.2.1 圆算法 中点椭圆
+	MFCcls();
+	C2018112559_Lullaby lull(this);
+	lull.MidEllipsolid(CRect(100, 100, 500, 300));
+	lull.Ellipse(CRect{ 0,0,1,1 });
+}
+
+
+
+void CCG2018112559GView::OnJ221d()
+{
+	//2.2.1 圆算法 中点圆弧
+	MFCcls();
+	C2018112559_Lullaby lull(this);
+	lull.MidCircleArc({ 500,500 }, 400, 0, 5);
+}
+
+
+void CCG2018112559GView::OnJ221e()
+{
+	//2.2.1 圆算法 中点椭圆弧
+	MFCcls();
+	C2018112559_Lullaby lull(this);
+	lull.MidEllipsolidArc({ 100,100,500,300 }, 0, 9);
+}
+
+void CCG2018112559GView::OnJ221z()
+{
+	//2.2.1 圆算法 同屏参数测试
+	MFCcls();
+}
+
+
+void CCG2018112559GView::OnJ23a()
+{
+	//线型算法 基本展示
+	MFCcls();
+	C2018112559_Lullaby lull(this);
+	vector<C2018112559_Lullaby::LineFormat> lineF = {
+		C2018112559_Lullaby::LineFormatSimple("1000000000000", 4).getLineFormat() ,
+		C2018112559_Lullaby::LineFormatSimple("1100000000000", 4).getLineFormat(),
+		C2018112559_Lullaby::LineFormatSimple("1110000000000", 4).getLineFormat(),
+		C2018112559_Lullaby::LineFormatSimple("100100100100", 4).getLineFormat(),
+		C2018112559_Lullaby::LineFormatSimple("100011001110", 4).getLineFormat(),
+		C2018112559_Lullaby::LineFormatSimple("1111000010000", 4).getLineFormat()
+	};
+
+	lull.MidLineWithLineFormat({ 100,100 }, { 400,400 }, 0, lineF[0]);
+	lull.MidLineWithLineFormat({ 100,200 }, { 400,500 }, 0, lineF[1]);
+	lull.MidLineWithLineFormat({ 100,300 }, { 400,600 }, 0, lineF[2]);
+	lull.MidLineWithLineFormat({ 100,400 }, { 400,700 }, 0, lineF[3]);
+	lull.MidLineWithLineFormat({ 100,500 }, { 400,800 }, 0, lineF[4]);
+	lull.MidLineWithLineFormat({ 100,600 }, { 400,900 }, 0, lineF[5]);
+	vector<std::string> f = {
+		"111111111111111111111111111111111111111111111",
+		"100000000000000000000000000000000000000000001",
+		"100000000000000000000000000000000000000000001",
+		"100000000000000000000000000000000000000000001",
+		"100000000011000000000000000001100000000000001",
+		"100000001100110000000000000110011000000000001",
+		"100000011000011000000000001100001100000000001",
+		"100001100000000110000000110000000011000000001",
+		"100110000000000001100011000000000000110000001",
+		"100000000000000000000000000000000000000000001",
+		"100000000000000000000000000000000000000000001",
+		"100000000000110000000000001100000000000000001",
+		"100000000000001100000000110000000000000000001",
+		"100000000000000011000011000000000000000000001",
+		"100000000000000000111100000000000000000000001",
+		"100000000000000000000000000000000000000000001",
+		"100000000000000000000000000000000000000000001",
+		"100000000000000000000000000000000000000000001",
+		"111111111111111111111111111111111111111111111"
+	};
+	for (int i = 0; i < f.size() / 2; ++i)swap(f[i], f[f.size() - i - 1]);
+	C2018112559_Lullaby::LineFormat awesomeLineF(f);
+	lull.MidLineWithLineFormat({ 500,500 }, {1800,200 },0, awesomeLineF);
+}
+
+
+
+void CCG2018112559GView::OnJ23b()
+{
+	// 线型算法 输入窗格
+	threadManage tm;
+	
+	tm.active(__func__, std::thread([]() {
+		DlgDynamicInputNeeds ddin;
+		ddin.DoModal();
+		}));
+
 }

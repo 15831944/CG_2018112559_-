@@ -22,6 +22,9 @@
     <Filter Include="作业\源文件">
       <UniqueIdentifier>{cbefdf89-2e43-41c3-b984-1ef96a5ccfb2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="线程管理">
+      <UniqueIdentifier>{551b617e-be7e-4fa4-ad51-8d3e008e6ad3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CG2018112559G.h">
@@ -69,6 +72,15 @@
     <ClInclude Include="j2.1.h">
       <Filter>作业\头文件</Filter>
     </ClInclude>
+    <ClInclude Include="pack.h">
+      <Filter>作业\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgDynamicInputNeeds.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="threadManage.h">
+      <Filter>线程管理</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CG2018112559G.cpp">
@@ -103,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="check.cpp">
       <Filter>作业\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgDynamicInputNeeds.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
