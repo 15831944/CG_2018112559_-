@@ -72,8 +72,8 @@ CCG2018112559GView::CCG2018112559GView() noexcept
 
 CCG2018112559GView::~CCG2018112559GView()
 {
-	for(auto &thr:tm.)
-
+	//等待子线程退出
+	tm.JoinAllThreads();
 }
 
 BOOL CCG2018112559GView::PreCreateWindow(CREATESTRUCT& cs)
@@ -520,16 +520,22 @@ void CCG2018112559GView::OnJ23a()
 	lull.MidLineWithLineFormat({ 500,500 }, {1800,200 },0, awesomeLineF);
 }
 
-
-
+ static atomic<int> ai=0;
 void CCG2018112559GView::OnJ23b()
 {
-	// 线型算法 输入窗格
-	threadManage tm;
-	
-	tm.active(__func__, std::thread([]() {
+	// 线型算法 输入窗格 
+
+	auto lamp = [](atomic<int>*pai) {
+		long p =long( pai);
+		ASSERT(long(pai) != NULL);
+		ASSERT(long(pai) != -858993460);//栈raw value
 		DlgDynamicInputNeeds ddin;
 		ddin.DoModal();
-		}));
+		pai->store(0); 
+	};
+	
+	if(tm.countExist(__func__)==0) 
+		tm.addThread<decltype(lamp),void,atomic<int>*>(__func__,lamp,&ai);
 
+	return;
 }

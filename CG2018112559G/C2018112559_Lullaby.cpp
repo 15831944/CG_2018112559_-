@@ -352,7 +352,6 @@ void Class_func_Call C2018112559_Lullaby::MidEllipsolidArc(const CRect& center, 
 			d += (8 * x + 4) * ryp2;
 		}
 		ellipPlot_in_range(cx, cy, x, y, rangeJudge);
-		
 	}
 	//¶Ô±ê y draw x in(slimX,rx]
 	//cur (x,y) 

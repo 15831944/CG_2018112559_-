@@ -118,11 +118,10 @@ private:
 	/// </summary>
 	/// <typeparam name="test"></typeparam>
 	template<class test>
-	inline void Class_func_Call circlePlot_in_range(
+	inline std::enable_if_t<std::is_same< decltype( std::declval<test>()(int(1),int(2))),bool>::value,void> Class_func_Call circlePlot_in_range(
 		const int cx, const int cy, const  int x, const int y, test& t);
 	template<class test>
-	inline void Class_func_Call ellipPlot_in_range(
-		const int cx, const int cy, const  int x, const int y, test& t);
+	inline std::enable_if_t<std::is_same< decltype(std::declval<test>()(int(1),int(2))), bool>::value, void> Class_func_Call ellipPlot_in_range(const int cx, const int cy, const int x, const int y, test& t);
 	/// <summary>if t(x,y)==true then setPixel    </summary>
 	/// <typeparam name="test">通常是lambda参数</typeparam>
 	template<class test>
@@ -134,7 +133,7 @@ private:
 };
 
 template<class test>
-inline void Class_func_Call C2018112559_Lullaby::circlePlot_in_range(const int cx, const int cy, const int x, const int y, test& t)
+inline std::enable_if_t<std::is_same< decltype( std::declval<test>()(int(1),int(2))),bool>::value,void> Class_func_Call C2018112559_Lullaby::circlePlot_in_range(const int cx, const int cy, const int x, const int y, test& t)
 {
 	setPixel_in_range<decltype(t)>(cx + x, cy + y, t);
 	setPixel_in_range(cx + x, cy - y, t);
@@ -150,7 +149,7 @@ inline void Class_func_Call C2018112559_Lullaby::circlePlot_in_range(const int c
 }
 
 template<class test>
-inline void Class_func_Call C2018112559_Lullaby::ellipPlot_in_range(const int cx, const int cy, const int x, const int y, test& t)
+inline std::enable_if_t<std::is_same< decltype( std::declval<test>()(int(1),int(2))),bool>::value,void> Class_func_Call C2018112559_Lullaby::ellipPlot_in_range(const int cx, const int cy, const int x, const int y, test &t)
 {
 	setPixel_in_range(cx + x, cy + y, t);
 	setPixel_in_range(cx + x, cy - y, t);

@@ -25,32 +25,17 @@
     <Filter Include="线程管理">
       <UniqueIdentifier>{551b617e-be7e-4fa4-ad51-8d3e008e6ad3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Default">
+      <UniqueIdentifier>{b1ef9e1a-f5cd-483c-8be6-d197857311a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Default">
+      <UniqueIdentifier>{93f50769-f239-47ea-8559-c1dc60e3ed54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DynamicDlg">
+      <UniqueIdentifier>{58a5c218-7ed8-4782-aad8-c88dab3b1795}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CG2018112559G.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="MainFrm.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CG2018112559GDoc.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CG2018112559GView.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="j1.2.h">
       <Filter>作业\头文件</Filter>
     </ClInclude>
@@ -75,29 +60,41 @@
     <ClInclude Include="pack.h">
       <Filter>作业\头文件</Filter>
     </ClInclude>
-    <ClInclude Include="DlgDynamicInputNeeds.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="threadManage.h">
       <Filter>线程管理</Filter>
     </ClInclude>
+    <ClInclude Include="CG2018112559G.h">
+      <Filter>头文件\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="CG2018112559GDoc.h">
+      <Filter>头文件\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="CG2018112559GView.h">
+      <Filter>头文件\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>头文件\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>头文件\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>头文件\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgDynamicInputNeeds.h">
+      <Filter>DynamicDlg</Filter>
+    </ClInclude>
+    <ClInclude Include="using_usual.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CG2018112559G.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="MainFrm.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CG2018112559GDoc.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CG2018112559GView.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="J1.1.cpp">
       <Filter>作业\源文件</Filter>
     </ClCompile>
@@ -116,8 +113,29 @@
     <ClCompile Include="check.cpp">
       <Filter>作业\源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CG2018112559G.cpp">
+      <Filter>源文件\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="CG2018112559GDoc.cpp">
+      <Filter>源文件\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="CG2018112559GView.cpp">
+      <Filter>源文件\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>源文件\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>源文件\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="threadManage.cpp">
+      <Filter>线程管理</Filter>
+    </ClCompile>
     <ClCompile Include="DlgDynamicInputNeeds.cpp">
-      <Filter>源文件</Filter>
+      <Filter>DynamicDlg</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicDlgFormat.h">
+      <Filter>DynamicDlg</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

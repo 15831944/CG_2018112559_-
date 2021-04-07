@@ -6,12 +6,9 @@
 
 #ifndef PCH_H
 #define PCH_H
-#ifdef _DEBUG
-#define DEBUG_HEAD __pragma("mark")
-#else
-#define DEBUG_HEAD __pragma("mark")
-#endif
-#define rem(x,y) x y
+
+
+
 // 添加要在此处预编译的标头
 #include "framework.h"
 #endif //PCH_H

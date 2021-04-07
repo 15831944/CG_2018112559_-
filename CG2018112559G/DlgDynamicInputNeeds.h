@@ -8,6 +8,7 @@ class DlgDynamicInputNeeds : public CDialogEx
 	DECLARE_DYNAMIC(DlgDynamicInputNeeds)
 
 public:
+
 	DlgDynamicInputNeeds(CWnd* pParent = nullptr);   // 标准构造函数
 	virtual ~DlgDynamicInputNeeds();
 

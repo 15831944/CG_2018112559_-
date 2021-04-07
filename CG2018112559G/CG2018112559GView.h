@@ -6,7 +6,7 @@
 
 //添加的头
 #include"C2018112559_Lullaby.h"
-
+#include"threadManage.h"
 class CCG2018112559GView : public CScrollView
 {
 private:
@@ -21,7 +21,7 @@ public:
 	CCG2018112559GDoc* GetDocument() const;
 
 //属性
-	threadManage tm=threadManage();
+	threadManage tm;
 // 操作
 public:
 
